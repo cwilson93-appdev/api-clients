@@ -8,8 +8,8 @@ puts "Will you need an umbrella today?".center(line_width)
 puts "="*line_width
 puts
 puts "Where are you?"
-# user_location = gets.chomp
-user_location = "Brooklyn"
+user_location = gets.chomp
+#user_location = "Brooklyn"
 puts "Checking the weather at #{user_location}...."
 
 # Get the lat/lng of location from Google Maps API
@@ -78,6 +78,9 @@ end
 
 if any_precipitation == true
   puts "You might want to take an umbrella!"
+else
+  puts "You probably won't need an umbrella."
+end
   
   # Get your credentials from your Twilio dashboard, or from Canvas if you're using mine
   # Learn how to store credentials securely in environment variables: https://chapters.firstdraft.com/chapters/792
@@ -90,7 +93,7 @@ if any_precipitation == true
     twilio_client = Twilio::REST::Client.new(twilio_sid, twilio_token)
 
     # Put your own phone number here if you want to see it in action
-    recipient_number = "+13126000251"
+    recipient_number = "+12035365924"
 
     # Craft your SMS as a Hash literal with three keys:
     #   :from, :to, and :body
@@ -104,6 +107,3 @@ if any_precipitation == true
     puts "Notifying #{recipient_number}"
     twilio_client.api.account.messages.create(sms_info)
   end
-else
-  puts "You probably won't need an umbrella."
-end
